@@ -3,206 +3,953 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Club Motor</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap">
-    <script src="https://kit.fontawesome.com/yourfontawesomekit.js" crossorigin="anonymous"></script>
+    <title>ZonatanClub | Premium Motorcycle Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF2D20',
+                        secondary: '#1A2A3A',
+                        accent: '#F9F5F0',
+                        dark: '#0D1520',
+                        light: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-reverse': 'float-reverse 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 6s ease-in-out infinite',
+                        'spin-slow': 'spin 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'float-reverse': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        
+        .parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .text-stroke {
+            -webkit-text-stroke: 1px white;
+            color: transparent;
+        }
+        .clip-path-hero {
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+        .clip-path-section {
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+        }
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+    </style>
 </head>
-<body>
+<body class="font-body bg-light text-gray-800 overflow-x-hidden">
+    <!-- Navigation -->
+   <nav class="fixed w-full z-50 transition-all duration-500"
+     x-data="{ open: false, scrolled: false }"
+     @scroll.window="scrolled = (window.pageYOffset > 50) ? true : false"
+     :class="{
+        'backdrop-blur-md bg-white/80 shadow-lg': open || scrolled,
+        'bg-transparent': !open && !scrolled
+     }"
+>
+    <div class="container mx-auto px-6 py-4">
+        <div class="flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold font-heading text-secondary">
+                <span class="text-primary">Zonatan</span>Club
+            </a>
 
-    <header>
-        <nav>
-            <div class="logo">
-                ZonatanClub
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-10">
+                <a href="#home" class="text-amber-600 font-medium hover:text-primary transition-colors duration-300">Beranda</a>
+                <a href="#services" class="text-amber-600 font-medium hover:text-primary transition-colors duration-300">Layanan</a>
+                <a href="#gallery" class="text-amber-600 font-medium hover:text-primary transition-colors duration-300">Galeri</a>
+                <a href="#events" class="text-amber-600 font-medium hover:text-primary transition-colors duration-300">Event</a>
+                <a href="#members" class="text-amber-600 font-medium hover:text-primary transition-colors duration-300">Anggota</a>
+                <a href="#contact" class="text-amber-600 font-medium hover:text-primary transition-colors duration-300">Kontak</a>
             </div>
-            <ul class="nav-links">
-                <li><a href="#beranda">Beranda</a></li>
-                <li><a href="#produk">Produk</a></li>
-                <li><a href="#tentang">Tentang Kami</a></li>
-                <li><a href="#layanan">Layanan</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#daftar">Daftar</a></li>
-                <li><a href="#visi">Visi</a></li>
-                <li><a href="#kontak">Kontak</a></li>
 
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button @click="open = !open" class="text-gray-800 focus:outline-none">
+                    <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                </button>
             </div>
-        </nav>
-
-        <div class="header-content">
-            <h1>Club Motor Impian Anda Ada Disini</h1>
-            <p>Menyatukan Semangat, Mengukir Jejak di Jalan Raya</p>
-            <a href="#produk" class="btn">Jelajahi Produk</a><br>
         </div>
-    </header>
 
-    <main>
-        <section id="produk" class="produk-section">
-            <h2>Produk Unggulan Kami</h2>
-            <div class="produk-container">
-                <div class="produk-card">
-                    <img src="images/modif.jpg" alt="Alat Berat 1">
-                    <h3>Modifikasi Motor</h3>
-                    <p>Modifikasi bodi, knalpot, dan sistem kelistrikan sesuai dengan kebutuhan anggota.</p>
-                    <a href="#" class="btn">Detail Produk</a>
-                </div>
-                <div class="produk-card">
-                    <img src="images/modif1.png" alt="Alat Berat 2">
-                    <h3>Servis Motor</h3>
-                    <p>Layanan servis rutin dan perawatan motor untuk anggota klub.</p><br>
-                    <a href="#" class="btn">Detail Produk</a>
-                </div>
-                <div class="produk-card">
-                    <img src="images/pelatihan.jpeg" alt="Alat Berat 3">
-                    <h3>Pelatihan Berkendara</h3>
-                    <p>Kursus dan pelatihan berkendara untuk meningkatkan keterampilan.</p><br>
-                    <a href="#" class="btn">Detail Produk</a>
-                </div>
-            </div>
-        </section>
-
-        <section id="tentang" class="tentang-section">
-            <h2>Tentang Kami</h2>
-            <p>Kami adalah komunitas penggemar motor yang berdedikasi untuk merayakan dan menikmati dunia otomotif bersama. Didirikan pada 20 Januari 2019, ZonatanClub telah berkembang menjadi salah satu klub motor terkemuka di Indonesia. Kami memiliki berbagai kegiatan yang dirancang untuk menyatukan para anggota dan memperluas pengetahuan tentang motor..</p>
-            <a href="#" class="btn">Pelajari Lebih Lanjut</a>
-        </section>
-
-        <section id="layanan" class="layanan-section">
-            <h2>Event</h2>
-            <div class="layanan-container">
-                <div class="layanan-card">
-                    <i class="fas fa-truck-moving"></i>
-                    <h3>Touring</h3>
-                    <p>Berkendara bersama ke destinasi tertentu, seperti kota lain, pantai, atau gunung.</p>
-                </div>
-                <div class="layanan-card">
-                    <i class="fas fa-tools"></i>
-                    <h3> Ride-Out</h3>
-                    <p>Perjalanan singkat di sekitar kota atau daerah lokal untuk bersenang-senang dan mempererat hubungan antar anggota.</p>
-                </div>
-                <div class="layanan-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>Show and Shine</h3>
-                    <p>Memberikan konsultasi terbaik untuk pemilihan alat berat yang sesuai dengan kebutuhan proyek Anda.</p>
-                </div>
-            </div>
-        </section>
+        <!-- Mobile Menu -->
+        <div x-show="open"
+             x-transition:enter="transition ease-out duration-300"
+             x-transition:enter-start="opacity-0 scale-95"
+             x-transition:enter-end="opacity-100 scale-100"
+             x-transition:leave="transition ease-in duration-200"
+             x-transition:leave-start="opacity-100 scale-100"
+             x-transition:leave-end="opacity-0 scale-95"
+             class="md:hidden mt-4 space-y-4 pb-4">
+            <a href="#home" class="block font-medium hover:text-primary transition-colors duration-300">Beranda</a>
+            <a href="#services" class="block font-medium hover:text-primary transition-colors duration-300">Layanan</a>
+            <a href="#gallery" class="block font-medium hover:text-primary transition-colors duration-300">Galeri</a>
+            <a href="#events" class="block font-medium hover:text-primary transition-colors duration-300">Event</a>
+            <a href="#members" class="block font-medium hover:text-primary transition-colors duration-300">Anggota</a>
+            <a href="#contact" class="block font-medium hover:text-primary transition-colors duration-300">Kontak</a>
+        </div>
+    </div>
+</nav>
 
 
-        <section id="gallery" class="gallery">
-            <h2>Galeri Kami</h2>
-            <div class="gallery-container">
-                <div class="gallery-item">
-                    <img src="images/gambar1.jpg" alt="Alat Berat 1">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gambar2.jpg" alt="Alat Berat 2">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gambar3.jpg" alt="Alat Berat 3">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gambar4.png" alt="Alat Berat 4">
-                </div>
-                <div class="gallery-item">
-                    <img src="images/gambar5.jpg" alt="Alat Berat 5">
-                </div>
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center clip-path-hero overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-full bg-black/50 z-10"></div>
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-dark/90 z-10"></div>
+            <div class="absolute top-0 left-0 w-full h-full bg-[url('https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=80')] bg-cover bg-center parallax"></div>
+            
+            <!-- Floating Circles -->
+            <div class="absolute top-1/4 left-1/4 w-16 h-16 rounded-full bg-primary/20 blur-xl animate-float"></div>
+            <div class="absolute top-1/3 right-1/4 w-24 h-24 rounded-full bg-white/10 blur-xl animate-float-reverse"></div>
+            <div class="absolute bottom-1/4 right-1/3 w-20 h-20 rounded-full bg-primary/15 blur-xl animate-float"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-20 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold font-heading text-white mb-6 animate-fade-in-down">
+                <span class="gradient-text bg-gradient-to-r from-primary to-yellow-400">Zonatan</span>Club
+            </h1>
+            <p class="text-xl md:text-2xl text-white/90 mb-10 max-w-3xl mx-auto animate-fade-in-up delay-100">
+                Komunitas motor premium yang menyatukan passion, teknologi, dan gaya hidup berkendara modern.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up delay-200">
+                <a href="#contact" class="px-8 py-4 bg-primary hover:bg-red-600 text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-primary/40">
+                    Bergabung Sekarang
+                </a>
+                <a href="#services" class="px-8 py-4 bg-transparent border-2 border-white text-white hover:bg-white/10 font-bold rounded-full transition-all duration-300 transform hover:scale-105">
+                    Jelajahi Layanan
+                </a>
             </div>
-        </section>
-    <!-- </div> -->
-    <section id= "daftar" class="clients">
-        <h2>Daftar Klien Kami</h2>
-        <div class="clients-container">
-            <div class="client-item">
-                <img src="images/xaviera.jpg" alt="foto">
-                <p>Xaviera Putri</p>
+        </div>
+        
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <a href="#services" class="text-white hover:text-primary transition-colors duration-300">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-white relative overflow-hidden">
+        <!-- Decorative Elements -->
+        <div class="absolute -top-32 -right-32 w-64 h-64 rounded-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-32 w-64 h-64 rounded-full bg-secondary/10 blur-3xl"></div>
+        
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1 px-3 mb-4 text-xs font-semibold text-primary bg-primary/10 rounded-full">
+                    LAYANAN PREMIUM
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold font-heading text-secondary mb-4">
+                    Apa yang Kami <span class="text-primary">Tawarkan</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-600">
+                    Kami menyediakan berbagai layanan eksklusif untuk memenuhi kebutuhan komunitas motor premium.
+                </p>
             </div>
-            <div class="client-item">
-                <img src="images/raffi2.jpg" alt="foto">
-                <p>Raffi Ahmad</p>
-            </div>
-            <div class="client-item">
-                <img src="images/aril.jpg" alt="foto">
-                <p>Ariel Noah</p>
-            </div>
-            <div class="client-item">
-                <img src="images/gading.jpg" alt="foto">
-                <p>Gading Martin</p>
-            </div>
-            <div class="client-item">
-                <img src="images/desta.jpg" alt="foto">
-                <p>Desta</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             alt="Modifikasi Motor" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute top-4 right-4 w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-2xl">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-heading text-secondary mb-2">Modifikasi Premium</h3>
+                        <p class="text-gray-600 mb-4">
+                            Transformasikan motor Anda dengan modifikasi premium dari tim ahli kami.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-primary font-semibold group-hover:underline">
+                            Selengkapnya
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://media.istockphoto.com/id/1413970570/photo/car-service-worker-put-anti-gravel-film-on-a-red-car-body-at-the-detailing-vehicle-workshop.webp?a=1&b=1&s=612x612&w=0&k=20&c=cCgFxVEru80_RXrMLJKphOdeP_iwvXgtTqEWTsovbw8=" 
+                             alt="Servis Motor" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute top-4 right-4 w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-2xl">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-heading text-secondary mb-2">Servis Eksklusif</h3>
+                        <p class="text-gray-600 mb-4">
+                            Layanan servis komprehensif dengan teknologi terkini untuk performa optimal.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-primary font-semibold group-hover:underline">
+                            Selengkapnya
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl hover:-translate-y-2 group">
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://plus.unsplash.com/premium_photo-1682088541985-5b226a4867e5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGVhcm4lMjBkcml2aW5nfGVufDB8fDB8fHww" 
+                             alt="Pelatihan Berkendara" 
+                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+                        <div class="absolute top-4 right-4 w-14 h-14 bg-primary rounded-full flex items-center justify-center text-white text-2xl">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold font-heading text-secondary mb-2">Akademi Berkendara</h3>
+                        <p class="text-gray-600 mb-4">
+                            Tingkatkan keterampilan berkendara Anda dengan pelatihan profesional.
+                        </p>
+                        <a href="#" class="inline-flex items-center text-primary font-semibold group-hover:underline">
+                            Selengkapnya
+                            <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id= "visi" class="vision-mission">
-        <h2>Visi dan Misi</h2>
-        <div class="vision">
-            <h3>Visi</h3>
-            <p>Menjadi komunitas sepeda motor yang terbesar dan paling berpengaruh di Indonesia, yang mengedepankan keselamatan, persatuan, dan inovasi dalam setiap aspek kehidupan berkendara.</p>
-        </div>
-        <div class="mission">
-            <h3>Misi</h3>
-            <p>- Mempromosikan keselamatan berkendara melalui edukasi dan pelatihan rutin bagi para anggota.</p>
-            <p>- Menyediakan wadah bagi para bikers untuk saling berbagi pengalaman, pengetahuan, dan informasi seputar dunia otomotif.</p>
-            <p>- Mengorganisir berbagai acara dan kegiatan yang mempererat hubungan antaranggota serta masyarakat umum.</p>
-            <p>- Mendorong inovasi dalam teknologi sepeda motor dengan bekerja sama dengan berbagai pihak terkait di industri otomotif.</p>
-            <p>- Berkontribusi positif kepada masyarakat melalui kegiatan sosial dan program CSR yang berkelanjutan.</p>
-        </div>
-    </section>
-
-
-    <section id="kontak" class="kontak-section">
-        <h2>Hubungi Kami</h2>
-        <div class="kontak-container">
-            <form action="kirim_email.php" method="post">
-                <div class="form-group">
-                    <label for="nama">Nama</label>
-                    <input type="text" id="nama" name="nama" required>
+    <!-- Stats Section -->
+    <section class="py-16 bg-secondary text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=80')] bg-cover bg-center opacity-20"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="py-6">
+                    <div class="text-4xl md:text-5xl font-bold font-heading mb-2 animate-count" data-count="5000">0</div>
+                    <div class="text-sm uppercase tracking-wider">Anggota</div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
+                <div class="py-6">
+                    <div class="text-4xl md:text-5xl font-bold font-heading mb-2 animate-count" data-count="120">0</div>
+                    <div class="text-sm uppercase tracking-wider">Event/Tahun</div>
                 </div>
-                <div class="form-group">
-                    <label for="pesan">Pesan</label>
-                    <textarea id="pesan" name="pesan" rows="5" required></textarea>
+                <div class="py-6">
+                    <div class="text-4xl md:text-5xl font-bold font-heading mb-2 animate-count" data-count="50">0</div>
+                    <div class="text-sm uppercase tracking-wider">Partner</div>
                 </div>
-                <button type="submit" class="btn">Kirim Pesan</button>
-            </form>
-            <div class="kontak-info">
-                <h3>Informasi Kontak</h3>
-                <p><i class="fas fa-map-marker-alt"></i> Jl. Raya Unima No.1, Tondano</p>
-                <p><i class="fas fa-phone-alt"></i> (062) 088888888</p>
-                <p><i class="fas fa-envelope"></i> rustrumper@gmail.com</p>
-                <div class="sosial-media">
-                    <a href="#"><i class="fab fa-facebook-f"></i>
-                        <img src="logof.png" alt="Logo" style="width:30px;height:auto;"></a>
-                    <a href="https://www.instagram.com/xavieraaputri/"><i class="fab fa-instagram"></i>
-                        <img src="logoig.png" alt="Logo" style="width:30px;height:auto;"></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i>
-                        <img src="logoin.png" alt="Logo" style="width:30px;height:auto;"></a>
-                    <a href="#"><i class="fab fa-twitter"></i>
-                        <img src="logotw.png" alt="Logo" style="width:30px;height:auto;"></a>
+                <div class="py-6">
+                    <div class="text-4xl md:text-5xl font-bold font-heading mb-2 animate-count" data-count="15">0</div>
+                    <div class="text-sm uppercase tracking-wider">Kota</div>
                 </div>
             </div>
         </div>
     </section>
-    
-    </main>
 
-    <footer>
-        <p>&copy; 2024 ZonatanClub.com. All rights reserved.</p>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-40 bg-accent clip-path-section relative overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-64 h-64 rounded-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute -bottom-32 -right-32 w-64 h-64 rounded-full bg-secondary/10 blur-3xl"></div>
+        
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1 px-3 mb-4 text-xs font-semibold text-primary bg-primary/10 rounded-full">
+                    MOMEN TERBAIK
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold font-heading text-secondary mb-4">
+                    Galeri <span class="text-primary">Kami</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-600">
+                    Dokumentasi momen-momen terbaik dari komunitas kami.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Gallery Item 1 -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1558980394-4c7c9299fe96?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Gallery 1" 
+                         class="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-2">Touring Nasional</h3>
+                            <p class="text-white/80">Jelajahi Indonesia bersama komunitas</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="images/buggati.jpg" 
+                         alt="Gallery 2" 
+                         class="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-2">Workshop</h3>
+                            <p class="text-white/80">Belajar teknik modifikasi terbaru</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1606220838315-056192d5e927?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Gallery 3" 
+                         class="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-2">Kegiatan Sosial</h3>
+                            <p class="text-white/80">Berbagi dengan masyarakat sekitar</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 4 -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Gallery 4" 
+                         class="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-2">Kompetisi</h3>
+                            <p class="text-white/80">Ajang unjuk karya modifikasi</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 5 -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         alt="Gallery 5" 
+                         class="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-2">Ride Together</h3>
+                            <p class="text-white/80">Kebersamaan di jalan raya</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 6 -->
+                <div class="relative group overflow-hidden rounded-xl shadow-lg">
+                    <img src="https://c4.wallpaperflare.com/wallpaper/438/593/268/kawasaki-ninja-h2r-download-best-hd-wallpaper-preview.jpg" 
+                         alt="Gallery 6" 
+                         class="w-full h-64 object-cover transform transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+                        <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white font-bold text-xl mb-2">Custom Build</h3>
+                            <p class="text-white/80">Karya modifikasi anggota</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center px-6 py-3 border-2 border-primary text-primary font-bold rounded-full hover:bg-primary hover:text-white transition-all duration-300">
+                    Lihat Semua Foto
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-20 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1 px-3 mb-4 text-xs font-semibold text-primary bg-primary/10 rounded-full">
+                    KEGIATAN KAMI
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold font-heading text-secondary mb-4">
+                    Event <span class="text-primary">Mendatang</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-600">
+                    Jadwal kegiatan dan event eksklusif untuk anggota komunitas.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Event 1 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl group">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-primary flex items-center justify-center p-6 text-white">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold font-heading">15</div>
+                                <div class="text-lg font-medium">JULI</div>
+                                <div class="text-sm">2024</div>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <h3 class="text-xl font-bold font-heading text-secondary mb-2">Touring Bali</h3>
+                            <p class="text-gray-600 mb-4">Jelajahi keindahan Bali bersama komunitas dengan rute khusus.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+                                <span>Start dari Denpasar</span>
+                            </div>
+                            <a href="#" class="mt-4 inline-flex items-center text-primary font-semibold group-hover:underline">
+                                Daftar Sekarang
+                                <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 2 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl group">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-secondary flex items-center justify-center p-6 text-white">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold font-heading">28</div>
+                                <div class="text-lg font-medium">JULI</div>
+                                <div class="text-sm">2024</div>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <h3 class="text-xl font-bold font-heading text-secondary mb-2">Workshop Modifikasi</h3>
+                            <p class="text-gray-600 mb-4">Pelajari teknik modifikasi terbaru dari ahli berpengalaman.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+                                <span>Garasi ZonatanClub, Jakarta</span>
+                            </div>
+                            <a href="#" class="mt-4 inline-flex items-center text-primary font-semibold group-hover:underline">
+                                Daftar Sekarang
+                                <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 3 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl group">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-primary flex items-center justify-center p-6 text-white">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold font-heading">10</div>
+                                <div class="text-lg font-medium">AGU</div>
+                                <div class="text-sm">2024</div>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <h3 class="text-xl font-bold font-heading text-secondary mb-2">Charity Ride</h3>
+                            <p class="text-gray-600 mb-4">Berkendara sambil beramal untuk anak-anak kurang mampu.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+                                <span>Start dari Bandung</span>
+                            </div>
+                            <a href="#" class="mt-4 inline-flex items-center text-primary font-semibold group-hover:underline">
+                                Daftar Sekarang
+                                <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Event 4 -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-xl group">
+                    <div class="md:flex">
+                        <div class="md:w-1/3 bg-secondary flex items-center justify-center p-6 text-white">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold font-heading">25</div>
+                                <div class="text-lg font-medium">AGU</div>
+                                <div class="text-sm">2024</div>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 p-6">
+                            <h3 class="text-xl font-bold font-heading text-secondary mb-2">Show & Shine</h3>
+                            <p class="text-gray-600 mb-4">Pamerkan motor modifikasi Anda dan menangkan hadiah menarik.</p>
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-map-marker-alt mr-2 text-primary"></i>
+                                <span>Parkir Timur Senayan, Jakarta</span>
+                            </div>
+                            <a href="#" class="mt-4 inline-flex items-center text-primary font-semibold group-hover:underline">
+                                Daftar Sekarang
+                                <i class="fas fa-arrow-right ml-2 transition-transform group-hover:translate-x-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Members Section -->
+    <section id="members" class="py-20 bg-secondary text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1800&q=80')] bg-cover bg-center opacity-10"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1 px-3 mb-4 text-xs font-semibold text-primary bg-primary/20 rounded-full">
+                    ANGGOTA KAMI
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold font-heading mb-4">
+                    Kenali <span class="text-primary">Anggota</span> Kami
+                </h2>
+                <p class="max-w-2xl mx-auto text-white/80">
+                    Beberapa anggota terkemuka dari komunitas ZonatanClub.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
+                <!-- Member 1 -->
+                <div class="text-center group">
+                    <div class="relative inline-block mb-4">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary transition-all duration-300 mx-auto">
+                            <img src="https://ngaspal.id/wp-content/uploads/2024/08/image-26-1024x683.png" 
+                                 alt="Xaviera Putri" 
+                                 class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg">Akira Nakai</h3>
+                    <p class="text-sm text-white/60">Modifier</p>
+                </div>
+                
+                <!-- Member 2 -->
+                <div class="text-center group">
+                    <div class="relative inline-block mb-4">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary transition-all duration-300 mx-auto">
+                            <img src="https://indopop.id/storage/gambar/raffi-ahmad_-moge-listrik_.jpg" 
+                                 alt="Raffi Ahmad" 
+                                 class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg">Raffi Ahmad</h3>
+                    <p class="text-sm text-white/60">Rider</p>
+                </div>
+                
+                <!-- Member 3 -->
+                <div class="text-center group">
+                    <div class="relative inline-block mb-4">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary transition-all duration-300 mx-auto">
+                            <img src="https://imgx.gridoto.com/crop/0x0:0x0/700x465/photo/2020/11/30/2283524569.jpg" 
+                                 alt="Ariel Noah" 
+                                 class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg">Ariel Noah</h3>
+                    <p class="text-sm text-white/60">Rider</p>
+                </div>
+                
+                <!-- Member 4 -->
+                <div class="text-center group">
+                    <div class="relative inline-block mb-4">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary transition-all duration-300 mx-auto">
+                            <img src="https://kuyou.id/content/images/20200605092724-gading.jpg" 
+                                 alt="Gading Martin" 
+                                 class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg">Gading Martin</h3>
+                    <p class="text-sm text-white/60">Builder</p>
+                </div>
+                
+                <!-- Member 5 -->
+                <div class="text-center group">
+                    <div class="relative inline-block mb-4">
+                        <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-4 border-primary/20 group-hover:border-primary transition-all duration-300 mx-auto">
+                            <img src="https://cdn0-production-images-kly.akamaized.net/FJ-kFuRNW9ijH5jb3gMpb-pH5K8=/1200x1200/smart/filters:quality(75):strip_icc():format(webp)/kly-media-production/medias/4067744/original/002640200_1656503538-Desta-Moge-desta80s-1.jpg" 
+                                 alt="Desta" 
+                                 class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110">
+                        </div>
+                        <div class="absolute bottom-0 right-0 w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white">
+                            <i class="fab fa-instagram text-sm"></i>
+                        </div>
+                    </div>
+                    <h3 class="font-bold text-lg">Desta</h3>
+                    <p class="text-sm text-white/60">Rider</p>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16">
+                <a href="#" class="inline-flex items-center px-8 py-4 bg-primary hover:bg-red-600 text-white font-bold rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg shadow-primary/40">
+                    Bergabung dengan Kami
+                    <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white relative overflow-hidden">
+        <div class="absolute -top-32 -right-32 w-64 h-64 rounded-full bg-primary/10 blur-3xl"></div>
+        <div class="absolute -bottom-32 -left-32 w-64 h-64 rounded-full bg-secondary/10 blur-3xl"></div>
+        
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block py-1 px-3 mb-4 text-xs font-semibold text-primary bg-primary/10 rounded-full">
+                    TESTIMONIAL
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold font-heading text-secondary mb-4">
+                    Apa Kata <span class="text-primary">Mereka</span>
+                </h2>
+                <p class="max-w-2xl mx-auto text-gray-600">
+                    Pendapat anggota tentang pengalaman mereka di ZonatanClub.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg relative group hover:shadow-xl transition-shadow duration-300">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-4 border-primary/20 mr-4">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Testimonial 1" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Sarah Wijaya</h4>
+                            <p class="text-sm text-gray-500">Anggota sejak 2020</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "ZonatanClub bukan sekadar klub motor, tapi keluarga besar. Saya belajar banyak tentang modifikasi dan teknik berkendara aman dari sini."
+                    </p>
+                    <div class="text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-quote-right text-4xl text-primary/10"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg relative group hover:shadow-xl transition-shadow duration-300">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-4 border-primary/20 mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Testimonial 2" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Budi Santoso</h4>
+                            <p class="text-sm text-gray-500">Anggota sejak 2019</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "Event touringnya selalu seru dan terorganisir dengan baik. Sudah 3 tahun bergabung dan tidak pernah bosan dengan aktivitas di ZonatanClub."
+                    </p>
+                    <div class="text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-quote-right text-4xl text-primary/10"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-lg relative group hover:shadow-xl transition-shadow duration-300">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-secondary"></div>
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full overflow-hidden border-4 border-primary/20 mr-4">
+                            <img src="https://randomuser.me/api/portraits/men/33.jpg" alt="Testimonial 3" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg">Andi Pratama</h4>
+                            <p class="text-sm text-gray-500">Anggota sejak 2021</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 mb-6">
+                        "Layanan servis eksklusif untuk anggota sangat membantu. Teknisi yang kompeten dan sparepart berkualitas. Worth it banget jadi anggota!"
+                    </p>
+                    <div class="text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <i class="fas fa-quote-right text-4xl text-primary/10"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('images/buggati.jpg')] bg-cover bg-center opacity-10"></div>
+        
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block py-1 px-3 mb-4 text-xs font-semibold text-primary bg-primary/20 rounded-full">
+                        HUBUNGI KAMI
+                    </span>
+                    <h2 class="text-4xl md:text-5xl font-bold font-heading mb-6">
+                        Mari <span class="text-primary">Berbicara</span>
+                    </h2>
+                    <p class="text-white/80 mb-8 max-w-lg">
+                        Punya pertanyaan atau ingin bergabung dengan komunitas kami? Isi form berikut atau hubungi langsung melalui kontak yang tersedia.
+                    </p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Lokasi</h4>
+                                <p class="text-white/70">Jl. Raya Unima No.1, Tondano, Sulawesi Utara</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                <i class="fas fa-phone-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Telepon</h4>
+                                <p class="text-white/70">+62 888 8888 8888</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mr-4">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg mb-1">Email</h4>
+                                <p class="text-white/70">info@zonatanclub.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h4 class="font-bold text-lg mb-4">Ikuti Kami</h4>
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center text-white transition-colors duration-300">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center text-white transition-colors duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center text-white transition-colors duration-300">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 hover:bg-primary flex items-center justify-center text-white transition-colors duration-300">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white/5 backdrop-blur-md rounded-xl p-8 border border-white/10">
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-white/80 mb-2">Nama Lengkap</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white placeholder-white/50">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-white/80 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white placeholder-white/50">
+                            </div>
+                        </div>
+                        <div class="mb-6">
+                            <label for="subject" class="block text-sm font-medium text-white/80 mb-2">Subjek</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white placeholder-white/50">
+                        </div>
+                        <div class="mb-6">
+                            <label for="message" class="block text-sm font-medium text-white/80 mb-2">Pesan</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary text-white placeholder-white/50"></textarea>
+                        </div>
+                        <button type="submit" class="w-full px-6 py-4 bg-primary hover:bg-red-600 text-white font-bold rounded-lg transition-all duration-300 transform hover:scale-[1.02] shadow-lg shadow-primary/20">
+                            Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-secondary text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-2xl font-bold font-heading mb-4">
+                        <span class="text-primary">Zonatan</span>Club
+                    </h3>
+                    <p class="text-white/70 mb-4">
+                        Komunitas motor premium yang menyatukan passion, teknologi, dan gaya hidup berkendara modern.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold font-heading mb-4">Tautan Cepat</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" class="text-white/70 hover:text-primary transition-colors duration-300">Beranda</a></li>
+                        <li><a href="#services" class="text-white/70 hover:text-primary transition-colors duration-300">Layanan</a></li>
+                        <li><a href="#gallery" class="text-white/70 hover:text-primary transition-colors duration-300">Galeri</a></li>
+                        <li><a href="#events" class="text-white/70 hover:text-primary transition-colors duration-300">Event</a></li>
+                        <li><a href="#contact" class="text-white/70 hover:text-primary transition-colors duration-300">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold font-heading mb-4">Layanan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">Modifikasi Motor</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">Servis Berkala</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">Pelatihan Berkendara</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">Event Komunitas</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-primary transition-colors duration-300">Konsultasi Otomotif</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold font-heading mb-4">Kontak</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary mr-2 mt-1"></i>
+                            <span class="text-white/70">Jl. Raya Unima No.1, Tondano, Sulawesi Utara</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt text-primary mr-2 mt-1"></i>
+                            <span class="text-white/70">+62 888 8888 8888</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-primary mr-2 mt-1"></i>
+                            <span class="text-white/70">info@zonatanclub.com</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-white/50 text-sm mb-4 md:mb-0">
+                    &copy; 2024 ZonatanClub. All rights reserved.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Privacy Policy</a>
+                    <a href="#" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Terms of Service</a>
+                    <a href="#" class="text-white/50 hover:text-white text-sm transition-colors duration-300">Sitemap</a>
+                </div>
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Back to Top Button -->
+    <a href="#home" class="fixed bottom-8 right-8 w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white shadow-lg hover:bg-red-600 transition-colors duration-300 z-50 opacity-0 invisible transition-all duration-300" id="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <!-- Alpine JS & Custom JS -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script>
+        // Back to Top Button
+        window.addEventListener('scroll', function() {
+            var backToTop = document.getElementById('back-to-top');
+            if (window.pageYOffset > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.remove('opacity-100', 'visible');
+                backToTop.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        // Counter Animation
+        function animateCounters() {
+            const counters = document.querySelectorAll('.animate-count');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (entry.target.classList.contains('animate-count')) {
+                        animateCounters();
+                    }
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.animate-count').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
